@@ -40,3 +40,5 @@ Terraform Init
 Terraform Validate
    ↓
 Terraform Plan
+
+CI Pipeline
