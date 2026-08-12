@@ -4,10 +4,20 @@ on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
+
+concurrency:
+  group: terraform-preprod-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TF_IN_AUTOMATION: true
+  ARM_USE_OIDC: true
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
 jobs:
   terraform:
@@ -17,6 +27,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      pull-requests: write   # only needed if you plan to post plan output as a PR comment
 
     defaults:
       run:
@@ -38,6 +49,9 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
       - name: Terraform Init
         run: terraform init -input=false
 
@@ -45,4 +59,4 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -input=false -out=tfplan
