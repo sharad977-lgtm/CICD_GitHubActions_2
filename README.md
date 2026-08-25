@@ -41,4 +41,4 @@ Terraform Validate
    ↓
 Terraform Plan
 
-CI Pipeline
+CI Pipelines
