@@ -39,6 +39,6 @@ Terraform Init
    ↓
 Terraform Validate
    ↓
-Terraform Plan
+Terraform Plans
 
-CI Pipelines
+CI Pipelines_feature
