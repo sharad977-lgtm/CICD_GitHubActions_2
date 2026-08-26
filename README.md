@@ -1,4 +1,11 @@
 # 🚀 Azure Infrastructure as Code | Terraform + GitHub Actions_skm
+# This line was added to add as commit for test"
+# This is new test commit line 
+# IN previous case Merge was fail lets see
+# lets see 
+# Yash-Test se commit karte he
+# Wrongly pull request done in Sharad
+# Test yash-test 
 
 <p align="center">
 
@@ -39,6 +46,6 @@ Terraform Init
    ↓
 Terraform Validate
    ↓
-Terraform Plan
+Terraform Plans
 
-CI Pipeline
+CI Pipelines_feature_Commit
